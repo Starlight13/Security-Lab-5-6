@@ -7,7 +7,6 @@ import com.romanishuna.security.lab.repository.UserRepo;
 import com.romanishuna.security.lab.wrapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -41,13 +40,10 @@ public class UserService implements UserDetailsService {
                 userRepository.save(user);
         }
 
-        public Token login(UserLogin userDTO) {
-                UserDetails userDetails = loadUserByUsername(userDTO.getEmail());
-                return new Token("Bearer " + tokenUtilService.generateTOKEN(userDetails));
-        }
-
-        public void authenticate(UserLogin userLogin) throws BadCredentialsException {
+        public Token login(UserLogin userLogin) {
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLogin.getEmail(), userLogin.getPassword()));
+                UserDetails userDetails = loadUserByUsername(userLogin.getEmail());
+                return new Token("Bearer " + tokenUtilService.generateTOKEN(userDetails));
         }
 
         @Override
