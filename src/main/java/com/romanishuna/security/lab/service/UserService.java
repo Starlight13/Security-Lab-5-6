@@ -4,6 +4,7 @@ import com.romanishuna.security.lab.exception.BadRequestException;
 import com.romanishuna.security.lab.exception.NotFoundException;
 import com.romanishuna.security.lab.model.*;
 import com.romanishuna.security.lab.repository.UserRepo;
+import com.romanishuna.security.lab.validation.ValidationService;
 import com.romanishuna.security.lab.wrapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,9 +30,12 @@ public class UserService implements UserDetailsService {
         private TokenUtilService tokenUtilService;
         @Autowired
         private PasswordEncoder passwordEncoder;
+        @Autowired
+        private ValidationService validationService;
 
         public void registration(UserRegistration userDTO) {
-
+                validationService.validateEmail(userDTO.getEmail());
+                validationService.validatePassword(userDTO.getPassword(), userDTO.getEmail());
                 if (userRepository.findUserByEmail(userDTO.getEmail()) != null) {
                         throw new BadRequestException("User with email: " + userDTO.getEmail() + " is already existed.");
                 }
