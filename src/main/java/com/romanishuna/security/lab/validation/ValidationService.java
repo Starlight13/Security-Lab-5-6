@@ -25,9 +25,6 @@ public class ValidationService {
     private static final String KEYBOARD_CONSECUTIVE_LETTERS = "qwertyuiopasdfghjklzxcvbnm";
     private static final String KEYBOARD_CONSECUTIVE_LETTERS_REVERSE = new StringBuilder(KEYBOARD_CONSECUTIVE_LETTERS).reverse().toString();
 
-    private static final String ENGLISH_ALPHABET = "abcdefghijklmnopqrstuvwxyz";
-    private static final String ENGLISH_ALPHABET_REVERSED = "zyxwvutsrqponmlkjihgfedcba";
-
     private static final String ALLOWED_SPECIAL_CHARS = "/*!@#$%^&*(){}_[]|?<>,.";
 
     private static final Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");

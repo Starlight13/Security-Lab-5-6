@@ -1,10 +1,11 @@
 package com.romanishuna.security.lab.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class UserRegistration {
+@AllArgsConstructor
+public class UserDetailsResponse {
     private String email;
-    private String password;
     private String phoneNumber;
 }

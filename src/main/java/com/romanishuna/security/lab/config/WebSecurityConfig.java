@@ -2,7 +2,6 @@ package com.romanishuna.security.lab.config;
 
 
 import com.romanishuna.security.lab.filter.JWTRequestFilter;
-import com.romanishuna.security.lab.service.TokenUtilService;
 import com.romanishuna.security.lab.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
